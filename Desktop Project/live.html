@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>Hoopr - Live</title>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <style>
+            body,h1,button,a,p,p2 {
+                    font-family: "Montserrat", sans-serif;
+            }
+            p2 {
+                font-family: "Montserrat", sans-serif;
+                color: white;
+                font-size: 18px;
+            }
+            h2 {
+                font-family: "Montserrat", sans-serif;
+                font-weight: thin;
+                font-size: 20px;
+            }
+
+            p1 {
+                font-family: "Montserrat", sans-serif;
+                color: #272833;
+                font-weight: bolder;
+                font-size: 25px;
+            }
+            h1 {
+                font-size: 80px;
+            }
+            #chat {
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                height: 50px;
+                width: 180px;
+                background-color: #272833;
+            }
+            #livevideo {
+                width: 700px;
+                height: 395px;
+            }
+            #hoopr {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                height: 50px;
+                width: auto;
+                background-color: transparent;
+            }
+            #content {
+                line-height: 80%;
+                height: 100%;
+                width: 100%;
+                background-color: white;
+            }
+            #container {
+                height: 100%
+                width: 100%
+                min-height: 615px;
+                background-color: #eceff1;
+            }
+            button{
+                background:#272833;
+                color:#fff;
+                border:none;
+                cursor:pointer;
+                position:relative;
+                height:50px;
+                width:auto;
+                padding:0 2em;
+                border-radius: 8px;
+            }
+            button:hover{
+                background:#fff;
+                color:#272833;
+            }
+            button:after{
+                right:inherit;
+                top:inherit;
+                left:0;
+                bottom:0;
+            }
+            button:hover:before,.startButton:hover:after{
+                width:100%;
+                transition:800ms ease all;
+            }
+            .topnav {
+                overflow: hidden;
+                background-color: #272833;
+            }
+            .topnav {
+                overflow: hidden;
+                background-color: #272833;
+            }
+            .topnav a {
+                float: left;
+                width: 100px;
+                color: #d30915;
+                text-align: center;
+                padding: 12px 16px;
+                text-decoration: none;
+                font-size: 18px;
+            }
+            .topnav a:hover {
+                background-color: #484a5e;
+                color: white;
+            }
+            .topnav a.active {
+                background-color: #d30915;
+                color: white;
+            }
+            /* The Modal (background) */
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 100px; /* Location of the box */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+            }
+
+            /* Modal Content */
+            .modal-content {
+                position: relative;
+                background-color: #fefefe;
+                margin: auto;
+                padding: 0;
+                border: 1px solid #272833;
+                width: 80%;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+                -webkit-animation-name: animatetop;
+                -webkit-animation-duration: 0.4s;
+                animation-name: animatetop;
+                animation-duration: 0.4s
+            }
+
+            /* Add Animation */
+            @-webkit-keyframes animatetop {
+                from {top:-300px; opacity:0}
+                to {top:0; opacity:1}
+            }
+
+            @keyframes animatetop {
+                from {top:-300px; opacity:0}
+                to {top:0; opacity:1}
+            }
+
+            /* The Close Button */
+            .close {
+                color: white;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: #484a5e;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            .modal-header {
+                padding: 2px 16px;
+                background-color: #272833;
+                color: white;
+            }
+
+            .modal-body {padding: 2px 16px;}
+
+            .modal-footer {
+                padding: 2px 16px;
+                background-color: #272833;
+                color: white;
+            }
+            @media only screen and (max-width: 400px) {
+                #vid {
+                    width: 75% !important;
+                }
+                #hoopr {
+                    display: none;
+                }
+                #livevideo {
+                    width: 90%;
+                }
+                .topnav a {
+                    float: left;
+                    width: 25%;
+                    color: #d30915;
+                    text-align: center;
+                    padding: 12px 16px;
+                    text-decoration: none;
+                    font-size: 18px;
+                }
+            }
+            </style>
+            <body>
+                <div id = "container">
+                    <!-- Navigation bar -->
+                    <div class="w3-top">
+                        <div class="topnav">
+                            <a href="http://huntercasillas.com/hoopr.html" style="color:white"> HOME </a>
+                            <a href="http://huntercasillas.com/find.html" style="color:white"> FIND </a>
+                            <a class="active" href="http://huntercasillas.com/live.html" style="color:white"> LIVE </a>
+                        </div>
+                    </div>
+                    <!--Main content -->
+                    <center> <div id = "content" style="padding:50px 0px;">
+                        <p style="font-size: 25px; font-weight:999; color:#d30915;">VASA Fitness</p>
+                        <p style="font-size: 18px; color:#272833; margin-bottom: 20px;">Live Video</p>
+                        <center><iframe id = "livevideo" src="http://www.youtube.com/embed/1Z9-ZRhSGg0?autoplay=1&mute=1&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+                    </div></center>
+                </div>
+
+                <a style="text-decoration:none; line-height: 110%; cursor: pointer;">
+                    <div id = "chat">
+                        <img id = "chaticon" src="chat.png" height="40px" width="40px" style="margin-top: 5px; margin-left: 10px; float:left;"></img>
+                        <p2 style="float:right; margin-right:18px; margin-top:15px;"> Need help? </p2>
+                    </div>
+                </a>
+                <a style="text-decoration:none" href="http://huntercasillas.com/hoopr.html"
+                    <div id = "hoopr">
+                    <img id = "logo" src="logo-transparent.png" height="50px" width="auto" style="margin-bottom:5px;"></img>
+                    <p1 style="margin-top:5px;"> HOOPR &nbsp</p>
+                        </div>
+                </a>
+
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                <div class="modal-header">
+                <span class="close">&times;</span>
+                <center><h2> &nbsp&nbsp&nbsp Help</h2></center>
+                    </div>
+                        <div class="modal-body">
+                            <center><p>This page displays a live stream of the gym selected on the find page. If you did not select a gym, the one nearest to your location will be displayed. You can browse other local gyms by using the right and left arrows or return to the nearest gym by clicking the corresponding button.</p></center>
+                        </div>
+                    </div>
+                </div>
+                <!-- Scripting -->
+                <script>
+                var hooprLogo = document.getElementById('hoopr');
+
+                // Fix background image jump on mobile
+                if ((/Android|iPhone|iPad|iPod|BlackBerry/i).test(navigator.userAgent || navigator.vendor || window.opera)) {
+                    hooprLogo.style.display = "none";
+                }
+                // Get the modal
+                var modal = document.getElementById('myModal');
+
+                // Get the button that opens the modal
+                var btn = document.getElementById("chat");
+
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+
+                // When the user clicks the button, open the modal
+                btn.onclick = function() {
+                    modal.style.display = "block";
+                }
+
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function() {
+                    modal.style.display = "none";
+                }
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+                </script>
+            </body>
+</html>
