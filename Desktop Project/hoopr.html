@@ -1,287 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
-    <title>Hoopr</title>
-        <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-            <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <style>
-            body,a,p {
-                font-family: "Montserrat", sans-serif;
-            }
-            h1 {
-                font-family: "Montserrat", sans-serif;
-                font-weight: normal;
-                font-size: 80px;
-            }
-            h2 {
-                font-family: "Montserrat", sans-serif;
-                font-weight: lighter;
-                font-size: 20px;
-            }
-            #content {
-                line-height: 350%;
-            }
-            #container {
-                position: absolute;
-                min-height: 615px;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                background-image: url('court.jpg');
-                background-size: cover;
-                background-repeat:no-repeat;
-                background-position:center;
-                background-color: #272833;
-            }
-            .startButton{
-                background:#d30915;
-                color:#fff;
-                border:none;
-                position:relative;
-                height:50px;
-                width:auto;
-                padding:0 2em;
-                cursor:pointer;
-                transition:800ms ease all;
-                outline:none;
-                border-radius: 7px;
-            }
-            .startButton:hover{
-                background:#fff;
-                color:#d30915;
-            }
-            .startButton:before{
-                content:'';
-                position:absolute;
-                top:0;
-                right:0;
-                height:5.8px;
-                width:0;
-                background: #a30500;
-                transition:400ms ease all;
-                border-top-left-radius: 999px;
-                border-top-right-radius: 999px;
-            }
-            .startButton:after{
-                content:'';
-                position:absolute;
-                top:0;
-                right:0;
-                height:5.8px;
-                width:0;
-                background: #a30500;
-                transition:400ms ease all;
-                border-bottom-left-radius: 999px;
-                border-bottom-right-radius: 999px;
+<title>Hoopr</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,a,p {
+    font-family: "Montserrat", sans-serif;
+}
+h1 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: normal;
+    font-size: 80px;
+}
+h2 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: lighter;
+    font-size: 20px;
+}
+#content {
+    line-height: 350%;
+}
+#container {
+    position: absolute;
+    min-height: 615px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('hoopr/court.jpg');
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-position:center;
+    background-color: #272833;
+}
+.startButton{
+    background:#d30915;
+    color:#fff;
+    border:none;
+    position:relative;
+    height:50px;
+    width:auto;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+    border-radius: 7px;
+}
+.startButton:hover{
+    background:#fff;
+    color:#d30915;
+}
+.startButton:before{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:5.8px;
+    width:0;
+    background: #a30500;
+    transition:400ms ease all;
+    border-top-left-radius: 999px;
+    border-top-right-radius: 999px;
+}
+.startButton:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:5.8px;
+    width:0;
+    background: #a30500;
+    transition:400ms ease all;
+    border-bottom-left-radius: 999px;
+    border-bottom-right-radius: 999px;
 
-            }
-            .startButton:after{
-                right:inherit;
-                top:inherit;
-                left:0;
-                bottom:0;
-            }
-            .startButton:hover:before,.startButton:hover:after{
-                width:100%;
-                transition:800ms ease all;
-            }
-            .mobileButton {
-                background:#d30915;
-                color:#fff;
-                border:none;
-                position:relative;
-                height:50px;
-                width:auto;
-                padding:0 2em;
-                cursor:pointer;
-                outline:none;
-                border-radius: 7px;
-            }
-            .mobileButton:hover{
-                background:#fff;
-                color:#d30915;
-            }
-            .mobileButton:after{
-                right:inherit;
-                top:inherit;
-                left:0;
-                bottom:0;
-            }
-            .mobileButton:hover:before,.startButton:hover:after{
-                width:100%;
-                transition:800ms ease all;
-            }
-            .topnav {
-                overflow: hidden;
-                background-color: #272833;
-            }
-            .topnav a {
-                float: left;
-                width: 100px;
-                color: #d30915;
-                text-align: center;
-                padding: 12px 16px;
-                text-decoration: none;
-                font-size: 18px;
-            }
-            .topnav a:hover {
-                background-color: #484a5e;
-                color: white;
-            }
-            .topnav a.active {
-                background-color: #d30915;
-                color: white;
-            }
-            /* The Modal (background) */
-            .modal {
-                display: none; /* Hidden by default */
-                position: fixed; /* Stay in place */
-                z-index: 1; /* Sit on top */
-                padding-top: 100px; /* Location of the box */
-                left: 0;
-                top: 0;
-                width: 100%; /* Full width */
-                height: 100%; /* Full height */
-                overflow: auto; /* Enable scroll if needed */
-                background-color: rgb(0,0,0); /* Fallback color */
-                background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
-            }
+}
+.startButton:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+}
+.startButton:hover:before,.startButton:hover:after{
+    width:100%;
+    transition:800ms ease all;
+}
+.mobileButton {
+    background:#d30915;
+    color:#fff;
+    border:none;
+    position:relative;
+    height:50px;
+    width:auto;
+    padding:0 2em;
+    cursor:pointer;
+    outline:none;
+    border-radius: 7px;
+}
+.mobileButton:hover{
+    background:#fff;
+    color:#d30915;
+}
+.mobileButton:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+}
+.mobileButton:hover:before,.startButton:hover:after{
+    width:100%;
+    transition:800ms ease all;
+}
+.topnav {
+    overflow: hidden;
+    background-color: #272833;
+}
+.topnav a {
+    float: left;
+    width: 100px;
+    color: #d30915;
+    text-align: center;
+    padding: 12px 16px;
+    text-decoration: none;
+    font-size: 18px;
+}
+.topnav a:hover {
+    background-color: #484a5e;
+    color: white;
+}
+.topnav a.active {
+    background-color: #d30915;
+    color: white;
+}
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+}
 
-            /* Modal Content */
-            .modal-content {
-                position: relative;
-                background-color: #fefefe;
-                margin: auto;
-                padding: 0;
-                border: 1px solid #272833;
-                width: 80%;
-                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-                -webkit-animation-name: animatetop;
-                -webkit-animation-duration: 0.4s;
-                animation-name: animatetop;
-                animation-duration: 0.4s
-            }
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #272833;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
 
-            /* Add Animation */
-            @-webkit-keyframes animatetop {
-                from {top:-300px; opacity:0}
-                to {top:0; opacity:1}
-            }
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
 
-            @keyframes animatetop {
-                from {top:-300px; opacity:0}
-                to {top:0; opacity:1}
-            }
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
 
-            /* The Close Button */
-            .close {
-                color: white;
-                float: right;
-                font-size: 28px;
-                font-weight: bold;
-            }
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
 
-            .close:hover,
-            .close:focus {
-                color: #484a5e;
-                text-decoration: none;
-                cursor: pointer;
-            }
+.close:hover,
+.close:focus {
+    color: #484a5e;
+    text-decoration: none;
+    cursor: pointer;
+}
 
-            .modal-header {
-                padding: 2px 16px;
-                background-color: #272833;
-                color: white;
-            }
+.modal-header {
+    padding: 2px 16px;
+    background-color: #272833;
+    color: white;
+}
 
-            .modal-body {padding: 2px 16px;}
+.modal-body {padding: 2px 16px;}
 
-            .modal-footer {
-                padding: 2px 16px;
-                background-color: #272833;
-                color: white;
-            }
-            @media only screen and (max-width: 400px) {
-                .topnav a {
-                    float: left;
-                    width: 25%;
-                    color: #d30915;
-                    text-align: center;
-                    padding: 12px 16px;
-                    text-decoration: none;
-                    font-size: 18px;
-                }
-            }
-            </style>
-            <body>
-                <div id = "container">
-                    <!-- Navigation bar -->
-                    <div class="w3-top">
-                        <div class="topnav">
-                            <a class="active" href="http://huntercasillas.com/hoopr.html" style="color:white"> HOME </a>
-                            <a href="http://huntercasillas.com/find.html" style="color:white"> FIND </a>
-                            <a href="http://huntercasillas.com/live.html" style="color:white"> LIVE </a>
-                            <a id="info" style="color:white; float:right; cursor: pointer;"> &#9432 </a>
-                        </div>
-                    </div>
-                    <!-- Main content -->
-                    <center> <div id = "content" style="padding:110px 16px">
-                        <h1 style="color:white;">HOOPR</h1>
-                        <h2 style="color:white">FIND PICKUP BASKETBALL</h2>
-                        <center><img id = "logo" src="logo.png" height="150" width="auto" style="margin-top: 10px; margin-bottom: 40px"></img></center>
-                        <button class = "startButton" id ="started" onclick="window.location.href='/find.html'">GET STARTED</button>
-                    </div> </center>
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #272833;
+    color: white;
+}
+@media only screen and (max-width: 400px) {
+    .topnav a {
+        float: left;
+        width: 25%;
+        color: #d30915;
+        text-align: center;
+        padding: 12px 16px;
+        text-decoration: none;
+        font-size: 18px;
+    }
+}
+</style>
+<body>
+    <!-- Navigation bar -->
+    <div class="w3-top">
+        <div class="topnav">
+            <a class="active" href="https://huntercasillas.com/hoopr.html" style="color:white"> HOME </a>
+            <a href="https://huntercasillas.com/find.html" style="color:white"> FIND </a>
+            <a href="https://huntercasillas.com/live.html" style="color:white"> LIVE </a>
+            <a id="info" style="color:white; float:right; cursor: pointer;"> &#9432 </a>
+        </div>
+    </div>
+    <div id = "container">
+        <!-- Main content -->
+        <center> <div id = "content" style="padding:110px 16px">
+            <h1 style="color:white;">HOOPR</h1>
+            <h2 style="color:white">FIND PICKUP BASKETBALL</h2>
+            <center><img id = "logo" src="hoopr/logo.png" height="150" width="auto" style="margin-top: 10px; margin-bottom: 40px"></img></center>
+            <button class = "startButton" id ="started" onclick="window.location.href='/find.html'">GET STARTED</button>
+        </div> </center>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <center><h2> &nbsp&nbsp&nbsp About Us</h2></center>
+            </div>
+            <div class="modal-body">
+                <center><p>Hoopr provides basketball players with an easy way of knowing where and when pick-up games are being played.
+                    We offer live video streams of gyms in your area, so you never show up to an empty court again.</p></center>
                 </div>
-                    <!-- The Modal -->
-                    <div id="myModal" class="modal">
-                        <!-- Modal content -->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <span class="close">&times;</span>
-                                <center><h2> &nbsp&nbsp&nbsp About Us</h2></center>
-                            </div>
-                            <div class="modal-body">
-                                <center><p>Hoopr provides basketball players with an easy way of knowing where and when pick-up games are being played.
-                                We offer live video streams of gyms in your area, so you never show up to an empty court again.</p></center>
-                            </div>
-                        </div>
-                    </div>
-                <!-- Scripting -->
-                <script>
-                var background = document.getElementById('container');
-                var startButton = document.getElementById('started');
+            </div>
+        </div>
+        <!-- Scripting -->
+        <script>
+        var startButton = document.getElementById('started');
 
-                // Fix background image jump on mobile
-                if ((/Android|iPhone|iPad|iPod|BlackBerry/i).test(navigator.userAgent || navigator.vendor || window.opera)) {
-                    startButton.className = "mobileButton";
-                }
+        // Fix background image jump on mobile
+        if (/Android|webOS|iPhone|iPod|pocket|psp|kindle|avantgo|blazer|midori|Tablet|Palm|maemo|plucker|phone|BlackBerry|symbian|IEMobile|mobile|ZuneWP7|Windows Phone|Opera Mini/i.test(navigator.userAgent || navigator.vendor || window.opera)) {
+            startButton.className = "mobileButton";
+        }
 
-                // Get the modal
-                var modal = document.getElementById('myModal');
+        // Get the modal
+        var modal = document.getElementById('myModal');
 
-                // Get the button that opens the modal
-                var btn = document.getElementById("info");
+        // Get the button that opens the modal
+        var btn = document.getElementById("info");
 
-                // Get the <span> element that closes the modal
-                var span = document.getElementsByClassName("close")[0];
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-                // When the user clicks the button, open the modal
-                btn.onclick = function() {
-                    modal.style.display = "block";
-                }
+        // When the user clicks the button, open the modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
 
-                // When the user clicks on <span> (x), close the modal
-                span.onclick = function() {
-                    modal.style.display = "none";
-                }
-                // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function(event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                }
-                </script>
-            </body>
-</html>
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        </script>
+    </body>
+    </html>

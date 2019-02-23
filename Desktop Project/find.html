@@ -1,213 +1,686 @@
 <!DOCTYPE html>
 <html lang="en">
-    <title>Hoopr - Find</title>
-        <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <style>
-            body,h1,button,a,p {
-                font-family: "Montserrat", sans-serif;
-            }
-            h2 {
-                font-family: "Montserrat", sans-serif;
-                font-weight: thin;
-                font-size: 20px;
-            }
-            #map {
-                position: absolute;
-                width: 100%;
-                height: 70%;
-            }
-            #container {
-                height: 100%
-                width: 100%
-                min-height: 615px;
-                background-color: #eceff1;
-            }
-            button{
-                background:#272833;
-                color:#fff;
-                border:none;
-                cursor:pointer;
-                position:relative;
-                height:50px;
-                width:auto;
-                padding:0 2em;
-                border-radius: 8px;
-            }
-            button:hover{
-                background:#fff;
-                color:#272833;
-            }
-            button:after{
-                right:inherit;
-                top:inherit;
-                left:0;
-                bottom:0;
-            }
-            button:hover:before,.startButton:hover:after{
-                width:100%;
-                transition:800ms ease all;
-            }
-            .topnav {
-                overflow: hidden;
-                background-color: #272833;
-            }
-            .topnav a {
-                float: left;
-                width: 100px;
-                color: #d30915;
-                text-align: center;
-                padding: 12px 16px;
-                text-decoration: none;
-                font-size: 18px;
-            }
-            .topnav a:hover {
-                background-color: #484a5e;
-                color: white;
-            }
-            .topnav a.active {
-                background-color: #d30915;
-                color: white;
-            }
-            /* The Modal (background) */
-            .modal {
-                display: none; /* Hidden by default */
-                position: fixed; /* Stay in place */
-                z-index: 1; /* Sit on top */
-                padding-top: 100px; /* Location of the box */
-                left: 0;
-                top: 0;
-                width: 100%; /* Full width */
-                height: 100%; /* Full height */
-                overflow: auto; /* Enable scroll if needed */
-                background-color: rgb(0,0,0); /* Fallback color */
-                background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
-            }
+<title>Hoopr - Find</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<style>
+body,h1,button,a,p {
+	font-family: "Montserrat", sans-serif;
+}
+h2 {
+	font-family: "Montserrat", sans-serif;
+	font-weight: thin;
+	font-size: 20px;
+}
+#map {
+	width: 100%;
+	height: 70vh;
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+}
+#searchMap {
+	margin-top: 58px;
+	margin-right: 58px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+#searchBar {
+	padding-bottom: 3px;
+	height: 39px;
+	width: 230px;
+}
+#locateButton {
+	margin-top: 57px;
+	margin-right: 10px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+	width: 40px;
+	height: 40px;
+}
+#content {
+	position: relative;
+	height: auto;
+	width: 100%;
+	background-color: white;
+}
+#container {
+	height: auto;
+	width: 100%;
+	background-color: white;
+}
+#selection {
+	background-color: white;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 20vh;
+	line-height: 40%;
+	margin-bottom: 10px;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	display: -webkit-flex; /* Safari */
+	-webkit-justify-content: center; /* Safari 6.1+ */
+}
+#address, #phone, #email {
+	background-color: transparent;
+	flex-wrap: nowrap;
+}
+#addresslogo, #phonelogo, #emaillogo, #titleButton {
+	background-color: transparent;
+}
+.hideError{
+	display:none;
+}
+.showError{
+	text-align: center;
+	position: absolute;
+	top: 50%;  /* position the top  edge of the element at the middle of the parent */
+	left: 50%; /* position the left edge of the element at the middle of the parent */
+	transform: translate(-50%, -50%);
+}
+button {
+	background: white;
+	color: #666666;
+	border: none;
+	border-radius: 2px;
+	box-shadow: 0px 0px 1px 1px #d1d1d1;
+}
+.liveButton{
+	background:#272833;
+	color:#fff;
+	border:none;
+	cursor:pointer;
+	position:relative;
+	height:50px;
+	width:auto;
+	padding:0 2em;
+	border-radius: 8px;
+}
+.liveButton:hover{
+	background:#d30915;
+	color:white;
+}
+.liveButton:after{
+	right:inherit;
+	top:inherit;
+	left:0;
+	bottom:0;
+}
+.liveButton:hover:before,.startButton:hover:after{
+	width:100%;
+	transition:800ms ease all;
+}
+.gm-style-iw {
+	min-height: 40px;
+	width: auto;
+	text-align: left;
+	font-family: "Montserrat", sans-serif;
+	color: #d30915;
+}
+.topnav {
+	overflow: hidden;
+	background-color: #272833;
+}
+.topnav a {
+	float: left;
+	width: 100px;
+	color: #d30915;
+	text-align: center;
+	padding: 12px 16px;
+	text-decoration: none;
+	font-size: 18px;
+}
+.topnav a:hover {
+	background-color: #484a5e;
+	color: white;
+}
+.topnav a.active {
+	background-color: #d30915;
+	color: white;
+}
 
-            /* Modal Content */
-            .modal-content {
-                position: relative;
-                background-color: #fefefe;
-                margin: auto;
-                padding: 0;
-                border: 1px solid #272833;
-                width: 80%;
-                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-                -webkit-animation-name: animatetop;
-                -webkit-animation-duration: 0.4s;
-                animation-name: animatetop;
-                animation-duration: 0.4s
-            }
+.flex-container {
+	display: flex;
+	flex-wrap: nowrap;
+	background-color: white;
+}
 
-            /* Add Animation */
-            @-webkit-keyframes animatetop {
-                from {top:-300px; opacity:0}
-                to {top:0; opacity:1}
-            }
+.flex-container > div {
+	background-color: white;
+	width: auto;
+	margin: auto;
+	text-align: center;
+}
 
-            @keyframes animatetop {
-                from {top:-300px; opacity:0}
-                to {top:0; opacity:1}
-            }
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a:active {
+	text-decoration: none;
+}
+@media only screen and (max-width: 400px) {
+	.topnav a {
+		float: left;
+		width: 25%;
+		color: #d30915;
+		text-align: center;
+		padding: 12px 16px;
+		text-decoration: none;
+		font-size: 18px;
+	}
+	#searchBar {
+		width: 312px;
+		height: 41px;
+		font-size: 16px;
+	}
+	#map {
+		width: 100%;
+		height: 55vh;
+	}
+	#titleButton, #address, #email, #phone {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	#searchMap {
+		margin-top: 60px;
+		margin-right: 58px;
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+	#selection {
+	}
+	#locateButton {
+		margin-top: 60px;
+		margin-right: 10px;
+		position: absolute;
+		top: 0;
+		right: 0;
+		cursor: pointer;
+		width: 40px;
+		height: 40px;
+	}
+}
+</style>
+<body>
+	<!-- Navigation bar -->
+	<div class="w3-top">
+		<div class="topnav">
+			<a href="https://huntercasillas.com/hoopr.html" style="color: white; text-decoration: none;"> HOME </a>
+			<a class="active" href="https://huntercasillas.com/find.html" style="color:white; text-decoration: none;"> FIND </a>
+			<a href="https://huntercasillas.com/live.html" style="color:white; text-decoration: none;"> LIVE </a>
+		</div>
+	</div>
+	<div id = "container">
+		<!-- Main content -->
+		<div id = "mapError" class="hideError">
+			<p id = "errorText">Oops! It looks like the map didn't load properly.<br>
+				Please refresh the page to try again.</p>
+			</div>
+			<div id = "content">
+				<div id = "map" style="margin-top: 51px">
+				</div>
+				<div id = "searchMap" class="search-container">
+					<form onsubmit="return false">
+						<input id="searchBar" spellcheck="false" type="text" placeholder=" Search Map" name="search">
+					</form>
+				</div>
+				<button id="locateButton" onclick="getLocation();">
+					<i class="fas fa-location-arrow"></i>
+				</button>
+			</div>
+			<!-- Flex Container -->
+			<div id = "selection" class="flex-container" style="padding-bottom: 15px;">
+				<div class = "flex-initial" id = "titleButton" style = "padding-left: 10px; background-color: transparent;">
+					<p id = "gymTitle" style="font-size: 23px; font-weight:999; color:#d30915;">VASA Orem</p>
+					<button class="liveButton" id ="viewButton" onclick="goToLive();">Live Stream</button>
+				</div>
+				<div id = "address" class="flex-container" style="background-color: transparent;">
+					<div style="background-color: transparent;">
+						<img id = "addresslogo" src="hoopr/address.png" height="90px" width="auto"></img>
+					</div>
+					<div style="background-color: transparent;">
+						<p style="text-align: left; font-size: 17px; font-weight:999; color:#d30915;">Address</p>
+						<a id = "addressLink" onclick="mapsSelector();" style = "cursor: pointer;">
+							<p id="topAddress" style="text-align: left; font-size: 12px; color:#272833;">1259 S 800 E</p>
+							<p id="bottomAddress" style="text-align: left; font-size: 12px; color:#272833;">Orem, UT 84097</p>
+						</a>
+					</div>
+				</div>
+				<div id = "phone" class="flex-container" style="background-color: transparent;">
+					<div style="background-color: transparent;">
+						<img id = "phonelogo" src="hoopr/phone.png" height="90px" width="auto"></img>
+					</div>
+					<div style="background-color: transparent;">
+						<p style="text-align: left; font-size: 17px; font-weight:999; color:#d30915;">Phone</p>
+						<a id = "phoneLink" href="tel:801-655-1139">
+							<p id = "phoneNumber" style="text-align: left; font-size: 12px; color:#272833;">(801) 655-1139</p>
+						</a>
+						<p id = "hours" style="text-align: left; font-size: 12px; color:#272833;">5:00 AM - 12:00 AM</p>
+					</div>
+				</div>
+				<div id = "email" class="flex-container" style="background-color: transparent;">
+					<div style="background-color: transparent;">
+						<img id = "emaillogo" src="hoopr/email.png" height="90px" width="auto"></img>
+					</div>
+					<div style="background-color: transparent;">
+						<p style="text-align: left; font-size: 17px; font-weight:999; color:#d30915;">Email</p>
+						<a id = "emailTopLink" href="mailto:info@vasafitness.com">
+							<p id = "topEmail" style="text-align: left; font-size: 12px; color:#272833;">info@vasafitness.com</p>
+						</a>
+						<a id = "emailBottomLink" href="mailto:support@vasafitness.com">
+							<p id = "bottomEmail" style="text-align: left; font-size: 12px; color:#272833;">reception@vasafitness.com</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Scripting -->
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvSDBKsvEEECwWqm-R6qNyP-M3_81K1Zo&libraries=places&callback=initialize"></script>
+		<script>
 
-            /* The Close Button */
-            .close {
-                color: white;
-                float: right;
-                font-size: 28px;
-                font-weight: bold;
-            }
+		if (/Android|webOS|iPhone|iPod|pocket|psp|kindle|avantgo|blazer|midori|Tablet|Palm|maemo|plucker|phone|BlackBerry|symbian|IEMobile|mobile|ZuneWP7|Windows Phone|Opera Mini/i.test(navigator.userAgent || navigator.vendor || window.opera)) {
+			document.getElementById("errorText").innerHTML="Oops! It looks like the map didn't load properly. Please click the home tab to try again.";
+		}
 
-            .close:hover,
-            .close:focus {
-                color: #484a5e;
-                text-decoration: none;
-                cursor: pointer;
-            }
+		window.onload = function() {
+			setTimeout(showError, 1000);  // Calls function after 1,000 milliseconds.
+		};
 
-            .modal-header {
-                padding: 2px 16px;
-                background-color: #272833;
-                color: white;
-            }
+		var map;
+		var infowindow;
+		var locationMarker;
+		var locationSet = false;
+		sessionStorage.gymID;
+		var gymTitle = document.getElementById("gymTitle");
+		var topAddress = document.getElementById("topAddress");
+		var bottomAddress = document.getElementById("bottomAddress");
+		var addressLink = document.getElementById("addressLink");
+		var phoneNumber = document.getElementById("phoneNumber");
+		var phoneLink = document.getElementById("phoneLink");
+		var hours = document.getElementById("hours");
+		var topEmail = document.getElementById("topEmail");
+		var emailTopLink = document.getElementById("emailTopLink");
+		var bottomEmail = document.getElementById("bottomEmail");
+		var emailBottomLink = document.getElementById("emailBottomLink");
+		var search = document.getElementById("searchBar");
 
-            .modal-body {padding: 2px 16px;}
+		var gyms = [
+			{
+				"title": " Brigham Young University ",
+				"lat": 40.248944,
+				"lng": -111.653493,
+				"description": "Richards Building"
+			},
+			{
+				"title": " VASA Fitness Provo ",
+				"lat": 40.240349,
+				"lng": -111.642137,
+				"description": "VASA Provo"
+			},
+			{
+				"title": " Provo Recreation Center ",
+				"lat": 40.241744,
+				"lng": -111.664284,
+				"description": "Provo Recreation"
+			},
+			{
+				"title": " Planet Fitness ",
+				"lat": 40.300054,
+				"lng": -111.697644,
+				"description": "Planet Fitness"
+			},
+			{
+				"title": " Anytime Fitness ",
+				"lat": 40.298179,
+				"lng": -111.735054,
+				"description": "Anytime Fitness"
+			},
+			{
+				"title": " Utah Valley University ",
+				"lat": 40.279345,
+				"lng": -111.714910,
+				"description": "Wellness Center"
+			},
+			{
+				"title": " VASA Fitness Orem ",
+				"lat": 40.274529,
+				"lng": -111.673437,
+				"description": "VASA Orem"
+			}
+		];
 
-            .modal-footer {
-                padding: 2px 16px;
-                background-color: #272833;
-                color: white;
-            }
-            @media only screen and (max-width: 400px) {
-                .topnav a {
-                    float: left;
-                    width: 25%;
-                    color: #d30915;
-                    text-align: center;
-                    padding: 12px 16px;
-                    text-decoration: none;
-                    font-size: 18px;
-                }
-            }
-            </style>
-            <body>
-                <div id = "container">
-                    <!-- Navigation bar -->
-                    <div class="w3-top">
-                        <div class="topnav">
-                            <a href="http://huntercasillas.com/hoopr.html" style="color:white"> HOME </a>
-                            <a class="active" href="http://huntercasillas.com/find.html" style="color:white"> FIND </a>
-                            <a href="http://huntercasillas.com/live.html" style="color:white"> LIVE </a>
-                        </div>
-                    </div>
-                    <!-- Main content -->
-                        <div id = "content">
-                            <iframe id="map" src="https://snazzymaps.com/embed/132353" style="border:none; margin-top: 50px"></iframe>
-                        </div>
-                </div>
-                    <!-- The Modal -->
-                <div id="myModal" class="modal">
-                        <!-- Modal content -->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <span class="close">&times;</span>
-                            <center><h2> &nbsp&nbsp&nbsp Find</h2></center>
-                        </div>
-                        <div class="modal-body">
-                            <center><p>This page offers an interactive map for finding gyms in your area. Simply search for a location or specific gym and click on the correct result. The gym's information will be automatically displayed below. To view the live feed, simply click the corresponding button.</p></center>
-                        </div>
-                    </div>
-                </div>
-                <!-- Scripting -->
-                <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-                <script>
-                // Get the modal
-                var modal = document.getElementById('myModal');
+		function goToLive() {
+			if (typeof(Storage) !== "undefined") {
+		      if (sessionStorage.gymID) {
+							if (gymTitle.innerHTML == "VASA Orem") {
+									sessionStorage.gymID = Number(3);
+									window.location.href='/live.html'
+							} else {
+								window.location.href='/live.html'
+							}
+		      } else {
+						sessionStorage.gymID = Number(3);
+						window.location.href='/live.html'
+		      }
+		    } else {
+					sessionStorage.gymID = Number(3);
+					window.location.href='/live.html'
+		    }
+		}
 
-                // Get the button that opens the modal
-                var btn = document.getElementById("info");
+		function initialize() {
 
-                // Get the <span> element that closes the modal
-                var span = document.getElementsByClassName("close")[0];
+			var markers = [];
+			var container = document.getElementById('map');
+			var mapOptions = {
+				zoom: 12,
+				fullscreenControl: false,
+				scrollwheel: false,
+				center: new google.maps.LatLng(40.273930, -111.677190),
+				styles: [{
+					stylers: [{
+						saturation: -95
+					}]
+				}]
+			};
 
-                // When the user clicks the button, open the modal
-                btn.onclick = function() {
-                    modal.style.display = "block";
-                }
+			map = new google.maps.Map(container, mapOptions);
 
-                // When the user clicks on <span> (x), close the modal
-                span.onclick = function() {
-                    modal.style.display = "none";
-                }
-                // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function(event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                }
-            </script>
-            </body>
-</html>
+			infowindow = new google.maps.InfoWindow;
+			infowindow.setContent(gyms[6].title);
+
+			var marker;
+			var i;
+
+			for (i = 0; i < gyms.length; i++) {
+				var data = gyms[i];
+
+				var image = {
+					url: "hoopr/markerDefault.png",
+					size: new google.maps.Size(25, 41),
+					origin: new google.maps.Point(0, 0),
+					anchor: new google.maps.Point(17, 34),
+					scaledSize: new google.maps.Size(25, 41)
+				};
+
+				marker = new google.maps.Marker({
+					position: new google.maps.LatLng(data.lat, data.lng),
+					title: data.title,
+					map: map,
+					icon: image
+				});
+
+				google.maps.event.addListener(marker, 'click', (function(marker, i) {
+					return function() {
+						infowindow.setContent(gyms[i].title);
+						infowindow.open(map, marker);
+						setDetails(gyms[i].title);
+					}
+				})(marker, i));
+
+				google.maps.event.addListenerOnce(map, 'tilesloaded', function() {
+						infowindow.open(map, marker);
+				});
+			}
+
+			// Create the search box and link it to the UI element.
+			var input = /** @type {HTMLInputElement} */(
+				document.getElementById('searchBar'));
+
+				var searchBox = new google.maps.places.SearchBox(
+					/** @type {HTMLInputElement} */(input));
+
+					// [START region_getplaces]
+					// Listen for the event fired when the user selects an item from the
+					// pick list. Retrieve the matching places for that item.
+					google.maps.event.addListener(searchBox, 'places_changed', function() {
+						var places = searchBox.getPlaces();
+
+						if (places.length == 0) {
+							window.alert("No results found. Please try again.");
+							return;
+						}
+
+						for (var i = 0, marker; marker = markers[i]; i++) {
+							marker.setMap(null);
+						}
+
+						// For each place, get the icon, place name, and location.
+						markers = [];
+						var bounds = new google.maps.LatLngBounds();
+						for (var i = 0, place; place = places[i]; i++) {
+							var image = {
+								url: "hoopr/markerSearch.png",
+								size: new google.maps.Size(25, 41),
+								origin: new google.maps.Point(0, 0),
+								anchor: new google.maps.Point(17, 34),
+								scaledSize: new google.maps.Size(25, 41)
+							};
+							// Create a marker for each place.
+							var marker = new google.maps.Marker({
+								map: map,
+								icon: image,
+								title: place.name,
+								position: place.geometry.location
+							});
+
+							markers.push(marker);
+							bounds.extend(place.geometry.location);
+
+							if (bounds.getNorthEast().equals(bounds.getSouthWest())) {
+								var extendPoint1 = new google.maps.LatLng(bounds.getNorthEast().lat() + 0.01, bounds.getNorthEast().lng() + 0.01);
+								var extendPoint2 = new google.maps.LatLng(bounds.getNorthEast().lat() - 0.01, bounds.getNorthEast().lng() - 0.01);
+								bounds.extend(extendPoint1);
+								bounds.extend(extendPoint2);
+							}
+						}
+						map.fitBounds(bounds);
+
+						for (i = 0; i < markers.length; i++) {
+							var marker = markers[i];
+
+							google.maps.event.addListener(marker, 'click', (function(marker, i) {
+								return function() {
+									infowindow.setContent(marker.title);
+									infowindow.open(map, marker);
+								}
+							})(marker, i));
+						}
+					});
+					// [END region_getplaces]
+
+					// Bias the SearchBox results towards places that are within the bounds of the
+					// current map's viewport.
+					google.maps.event.addListener(map, 'bounds_changed', function() {
+						var bounds = map.getBounds();
+						searchBox.setBounds(bounds);
+					});
+				}
+
+				function showError() {
+					document.getElementById("mapError").className="showError";
+				}
+
+				function getLocation() {
+					if (navigator.geolocation) {
+						navigator.geolocation.getCurrentPosition(showPosition);
+					} else {
+						window.alert("Geolocation is not supported by this browser.");
+					}
+				}
+
+				function showPosition(position) {
+					moveToLocation(position.coords.latitude, position.coords.longitude);
+				}
+
+				function mapsSelector() {
+					if /* if we're on iOS, open in Apple Maps */
+					((navigator.platform.indexOf("iPhone") != -1) ||
+					(navigator.platform.indexOf("iPad") != -1) ||
+					(navigator.platform.indexOf("iPod") != -1)) {
+						var mapAddress = "maps://maps.google.com/maps?daddr=" + topAddress.innerHTML + " " + bottomAddress.innerHTML + "&amp;ll=";
+						window.open(mapAddress);
+					} else {
+						var mapAddress = "https://maps.google.com/maps?daddr=" + topAddress.innerHTML + " " + bottomAddress.innerHTML + "&amp;ll=";
+						window.open(mapAddress);
+					}
+				}
+
+				function moveToLocation(lat, lng) {
+
+					if (locationSet === false) {
+						var center = new google.maps.LatLng(lat, lng);
+
+						var image = {
+							url: "hoopr/markerLocate.png",
+							size: new google.maps.Size(25, 41),
+							origin: new google.maps.Point(0, 0),
+							anchor: new google.maps.Point(17, 34),
+							scaledSize: new google.maps.Size(25, 41)
+						};
+						var marker = new google.maps.Marker({
+							map: map,
+							icon: image,
+							title: "Current Location",
+							position: center,
+						});
+
+						marker.setMap(map);
+
+						infowindow.setContent("Current Location");
+						infowindow.open(map, marker);
+						map.panTo(center);
+
+						google.maps.event.addListener(marker, 'click', function() {
+							infowindow.setContent("Current Location");
+							infowindow.open(map, marker);
+						});
+
+						locationMarker = marker;
+						locationSet = true;
+
+					} else {
+						infowindow.setContent("Current Location");
+						infowindow.open(map, locationMarker);
+						map.panTo(locationMarker.position);
+					}
+				}
+
+				function setDetails(selectedGym) {
+					if (selectedGym == " VASA Fitness Orem ") {
+						gymTitle.innerHTML = "VASA Orem";
+						topAddress.innerHTML = "1259 S 800 E";
+						bottomAddress.innerHTML = "Orem, UT 84097";
+						phoneNumber.innerHTML = "(801) 655-1139";
+						phoneLink.setAttribute('href', "tel:801-655-1139");
+						hours.innerHTML = "Open 24 hours";
+						topEmail.innerHTML = "info@vasafitness.com";
+						emailTopLink.setAttribute('href', "mailto:info@vasafitness.com");
+						bottomEmail.innerHTML = "reception@vasafitness.com";
+						emailBottomLink.setAttribute('href', "mailto:reception@vasafitness.com");
+						sessionStorage.gymID = Number(3);
+					} else if (selectedGym == " VASA Fitness Provo ") {
+						gymTitle.innerHTML = "VASA Provo";
+						topAddress.innerHTML = "460 N 900 E";
+						bottomAddress.innerHTML = "Provo, UT 84606";
+						phoneNumber.innerHTML = "(801) 337-2666";
+						phoneLink.setAttribute('href', "tel:801-337-2666");
+						hours.innerHTML = "5:00 AM - 12:00 AM";
+						topEmail.innerHTML = "info@vasafitness.com";
+						emailTopLink.setAttribute('href', "mailto:info@vasafitness.com");
+						bottomEmail.innerHTML = "reception@vasafitness.com";
+						emailBottomLink.setAttribute('href', "mailto:reception@vasafitness.com");
+						sessionStorage.gymID = Number(6);
+					} else if (selectedGym == " Brigham Young University ") {
+						gymTitle.innerHTML = "Richards Building";
+						topAddress.innerHTML = "15 Field House Dr";
+						bottomAddress.innerHTML = "Provo, UT 84604";
+						phoneNumber.innerHTML = "(801) 422-3644";
+						phoneLink.setAttribute('href', "tel:801-422-3644");
+						hours.innerHTML = "6:00 AM - 10:00 PM";
+						topEmail.innerHTML = "info@byu.edu";
+						emailTopLink.setAttribute('href', "mailto:info@byu.edu");
+						bottomEmail.innerHTML = "support@byu.edu";
+						emailBottomLink.setAttribute('href', "mailto:support@byu.edu");
+						sessionStorage.gymID = Number(0);
+					} else if (selectedGym == " Utah Valley University ") {
+						gymTitle.innerHTML = "Wellness Center";
+						topAddress.innerHTML = "800 W University Pkwy";
+						bottomAddress.innerHTML = "Orem, UT 84058";
+						phoneNumber.innerHTML = "(801) 863-5552";
+						phoneLink.setAttribute('href', "tel:801-863-5552");
+						hours.innerHTML = "6:00 AM - 10:00 PM";
+						topEmail.innerHTML = "instantinfo@uvu.edu";
+						emailTopLink.setAttribute('href', "mailto:instantinfo@uvu.edu");
+						bottomEmail.innerHTML = "servicedesk@uvu.edu";
+						emailBottomLink.setAttribute('href', "mailto:servicedesk@uvu.edu");
+						sessionStorage.gymID = Number(4);
+					} else if (selectedGym == " Provo Recreation Center ") {
+						gymTitle.innerHTML = "Provo Recreation";
+						topAddress.innerHTML = "320 W 500 N";
+						bottomAddress.innerHTML = "Provo, UT 84601";
+						phoneNumber.innerHTML = "(801) 852-6600";
+						phoneLink.setAttribute('href', "tel:801-852-6600");
+						hours.innerHTML = "5:00 AM - 10:00 PM";
+						topEmail.innerHTML = "info@provo.org";
+						emailTopLink.setAttribute('href', "mailto:info@provo.org");
+						bottomEmail.innerHTML = "recreation@provo.org";
+						emailBottomLink.setAttribute('href', "mailto:recreation@provo.org");
+						sessionStorage.gymID = Number(2);
+					} else if (selectedGym == " Planet Fitness ") {
+						gymTitle.innerHTML = "Planet Fitness";
+						topAddress.innerHTML = "157 N State St";
+						bottomAddress.innerHTML = "Orem, UT 84057";
+						phoneNumber.innerHTML = "(801) 225-4222";
+						phoneLink.setAttribute('href', "tel:801-225-4222");
+						hours.innerHTML = "Open 24 hours";
+						topEmail.innerHTML = "info@planetfitness.com";
+						emailTopLink.setAttribute('href', "mailto:info@planetfitness.com");
+						bottomEmail.innerHTML = "support@planetfitness.com";
+						emailBottomLink.setAttribute('href', "mailto:support@planetfitness.com");
+						sessionStorage.gymID = Number(5);
+					} else if (selectedGym == " Anytime Fitness ") {
+						gymTitle.innerHTML = "Anytime Fitness";
+						topAddress.innerHTML = "111 N Geneva Rd";
+						bottomAddress.innerHTML = "Vineyard, UT 84057";
+						phoneNumber.innerHTML = "(385) 203-2348";
+						phoneLink.setAttribute('href', "tel:385-203-2348");
+						hours.innerHTML = "Open 24 hours";
+						topEmail.innerHTML = "info@anytimefitness.com";
+						emailTopLink.setAttribute('href', "mailto:info@anytimefitness.com");
+						bottomEmail.innerHTML = "billing@anytimefitness.com";
+						emailBottomLink.setAttribute('href', "mailto:billing@anytimefitness.com");
+						sessionStorage.gymID = Number(1);
+					}
+				}
+				//google.maps.event.addDomListener(window, 'load', initialize);
+
+				// set font-size to 16px to prevent zoom
+				search.addEventListener("mousedown", function (e) {
+					e.target.style.fontSize = "16px";
+				});
+
+				// change font-size back to its initial value so the design will not break
+				search.addEventListener("focus", function (e) {
+					e.target.style.fontSize = "";
+				});
+				</script>
+			</body>
+			</html>

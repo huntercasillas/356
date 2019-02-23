@@ -1,284 +1,519 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
     <title>Hoopr - Live</title>
-        <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <style>
-            body,h1,button,a,p,p2 {
-                    font-family: "Montserrat", sans-serif;
-            }
-            p2 {
-                font-family: "Montserrat", sans-serif;
-                color: white;
-                font-size: 18px;
-            }
-            h2 {
-                font-family: "Montserrat", sans-serif;
-                font-weight: thin;
-                font-size: 20px;
-            }
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- ManyChat -->
+    <script src="//widget.manychat.com/584629952011042.js" async="async"></script>
+</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,button,a,p,p2 {
+    font-family: "Montserrat", sans-serif;
+}
+p2 {
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    font-size: 18px;
+}
+h2 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: thin;
+    font-size: 20px;
+}
 
-            p1 {
-                font-family: "Montserrat", sans-serif;
-                color: #272833;
-                font-weight: bolder;
-                font-size: 25px;
-            }
-            h1 {
-                font-size: 80px;
-            }
-            #chat {
-                position: fixed;
-                bottom: 0;
-                right: 0;
-                height: 50px;
-                width: 180px;
-                background-color: #272833;
-            }
-            #livevideo {
-                width: 700px;
-                height: 395px;
-            }
-            #hoopr {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                height: 50px;
-                width: auto;
-                background-color: transparent;
-            }
-            #content {
-                line-height: 80%;
-                height: 100%;
-                width: 100%;
-                background-color: white;
-            }
-            #container {
-                height: 100%
-                width: 100%
-                min-height: 615px;
-                background-color: #eceff1;
-            }
-            button{
-                background:#272833;
-                color:#fff;
-                border:none;
-                cursor:pointer;
-                position:relative;
-                height:50px;
-                width:auto;
-                padding:0 2em;
-                border-radius: 8px;
-            }
-            button:hover{
-                background:#fff;
-                color:#272833;
-            }
-            button:after{
-                right:inherit;
-                top:inherit;
-                left:0;
-                bottom:0;
-            }
-            button:hover:before,.startButton:hover:after{
-                width:100%;
-                transition:800ms ease all;
-            }
-            .topnav {
-                overflow: hidden;
-                background-color: #272833;
-            }
-            .topnav {
-                overflow: hidden;
-                background-color: #272833;
-            }
-            .topnav a {
-                float: left;
-                width: 100px;
-                color: #d30915;
-                text-align: center;
-                padding: 12px 16px;
-                text-decoration: none;
-                font-size: 18px;
-            }
-            .topnav a:hover {
-                background-color: #484a5e;
-                color: white;
-            }
-            .topnav a.active {
-                background-color: #d30915;
-                color: white;
-            }
-            /* The Modal (background) */
-            .modal {
-                display: none; /* Hidden by default */
-                position: fixed; /* Stay in place */
-                z-index: 1; /* Sit on top */
-                padding-top: 100px; /* Location of the box */
-                left: 0;
-                top: 0;
-                width: 100%; /* Full width */
-                height: 100%; /* Full height */
-                overflow: auto; /* Enable scroll if needed */
-                background-color: rgb(0,0,0); /* Fallback color */
-                background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
-            }
-
-            /* Modal Content */
-            .modal-content {
-                position: relative;
-                background-color: #fefefe;
-                margin: auto;
-                padding: 0;
-                border: 1px solid #272833;
-                width: 80%;
-                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-                -webkit-animation-name: animatetop;
-                -webkit-animation-duration: 0.4s;
-                animation-name: animatetop;
-                animation-duration: 0.4s
-            }
-
-            /* Add Animation */
-            @-webkit-keyframes animatetop {
-                from {top:-300px; opacity:0}
-                to {top:0; opacity:1}
-            }
-
-            @keyframes animatetop {
-                from {top:-300px; opacity:0}
-                to {top:0; opacity:1}
-            }
-
-            /* The Close Button */
-            .close {
-                color: white;
-                float: right;
-                font-size: 28px;
-                font-weight: bold;
-            }
-
-            .close:hover,
-            .close:focus {
-                color: #484a5e;
-                text-decoration: none;
-                cursor: pointer;
-            }
-
-            .modal-header {
-                padding: 2px 16px;
-                background-color: #272833;
-                color: white;
-            }
-
-            .modal-body {padding: 2px 16px;}
-
-            .modal-footer {
-                padding: 2px 16px;
-                background-color: #272833;
-                color: white;
-            }
-            @media only screen and (max-width: 400px) {
-                #vid {
-                    width: 75% !important;
-                }
-                #hoopr {
-                    display: none;
-                }
-                #livevideo {
-                    width: 90%;
-                }
-                .topnav a {
-                    float: left;
-                    width: 25%;
-                    color: #d30915;
-                    text-align: center;
-                    padding: 12px 16px;
-                    text-decoration: none;
-                    font-size: 18px;
-                }
-            }
-            </style>
-            <body>
-                <div id = "container">
-                    <!-- Navigation bar -->
-                    <div class="w3-top">
-                        <div class="topnav">
-                            <a href="http://huntercasillas.com/hoopr.html" style="color:white"> HOME </a>
-                            <a href="http://huntercasillas.com/find.html" style="color:white"> FIND </a>
-                            <a class="active" href="http://huntercasillas.com/live.html" style="color:white"> LIVE </a>
-                        </div>
-                    </div>
-                    <!--Main content -->
-                    <center> <div id = "content" style="padding:50px 0px;">
-                        <p style="font-size: 25px; font-weight:999; color:#d30915;">VASA Fitness</p>
-                        <p style="font-size: 18px; color:#272833; margin-bottom: 20px;">Live Video</p>
-                        <center><iframe id = "livevideo" src="http://www.youtube.com/embed/1Z9-ZRhSGg0?autoplay=1&mute=1&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
-                    </div></center>
+p1 {
+    font-family: "Montserrat", sans-serif;
+    color: #272833;
+    font-weight: bolder;
+    font-size: 25px;
+}
+h1 {
+    font-size: 80px;
+}
+#gymTitle {
+    font-size: 25px;
+    font-weight:999;
+    color:#d30915;
+}
+#chat {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: auto;
+    width: auto;
+    background-color: transparent;
+}
+#livevideo0, #livevideo1, #livevideo2, #livevideo3, #livevideo4, #livevideo5, #livevideo6 {
+    object-fit: cover;
+    width: 58%;
+    height: auto;
+    border-style: solid;
+    border-width: 1px;
+    border-color: transparent;
+}
+#hoopr {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    width: auto;
+    background-color: white;
+    border-radius: 150px;
+}
+#content {
+    line-height: normal;
+    background-color: white;
+}
+#container {
+    height: 100%
+    width: 100%
+    min-height: 615px;
+    background-color: white;
+}
+button{
+    background:#272833;
+    color:#fff;
+    border:none;
+    cursor:pointer;
+    position:relative;
+    height:50px;
+    width:auto;
+    padding:0 2em;
+    border-radius: 8px;
+}
+button:hover{
+    background:#d30915;
+    color:white;
+}
+button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+}
+button:hover:before,.startButton:hover:after{
+    width:100%;
+    transition:800ms ease all;
+}
+#navConfirm, #navDecline {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100px;
+}
+.carousel-control-next-icon {
+    height: 30px;
+    width: 30px;
+    background-size: 100%, 100%;
+    background-image: url("hoopr/rightArrow.png");
+}
+.carousel-control-prev-icon {
+    height: 30px;
+    width: 30px;
+    background-size: 100%, 100%;
+    background-image: url("hoopr/leftArrow.png");
+}
+.topnav {
+    overflow: hidden;
+    background-color: #272833;
+}
+.topnav {
+    overflow: hidden;
+    background-color: #272833;
+}
+.topnav a {
+    float: left;
+    width: 100px;
+    color: #d30915;
+    text-align: center;
+    padding: 12px 16px;
+    text-decoration: none;
+    font-size: 18px;
+}
+.topnav a:hover {
+    background-color: #484a5e;
+    color: white;
+}
+.topnav a.active {
+    background-color: #d30915;
+    color: white;
+}
+.overlay {
+    height: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+.overlay-content {
+    position: relative;
+    top: 28%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+.overlay p {
+    font-family: "Montserrat", sans-serif;
+    padding: 8px;
+    text-decoration: none;
+    font-size: 23px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+    color: rgba(255,255,255, 0.9);
+}
+.overlay .closebtn:hover {
+    color: rgba(83,4,8, 0.9);
+}
+@media only screen and (max-width: 400px) {
+    #gymTitle {
+        font-size: 23px;
+        font-weight:999;
+        color:#d30915;
+    }
+    #leftIcon, #rightIcon {
+        height: 30px;
+        width: auto;
+    }
+    #livevideo0, #livevideo1, #livevideo2, #livevideo3, #livevideo4, #livevideo5, #livevideo6 {
+        object-fit: cover;
+        width: 75%;
+        height: auto;
+        border-style: solid;
+        border-width: 1px;
+        border-color: transparent;
+    }
+    .topnav a {
+        float: left;
+        width: 25%;
+        color: #d30915;
+        text-align: center;
+        padding: 12px 16px;
+        text-decoration: none;
+        font-size: 18px;
+    }
+    .carousel-control-next-icon {
+        height: 20px;
+        width: 20px;
+        background-size: 100%, 100%;
+        background-image: url("hoopr/rightArrow.png");
+    }
+    .carousel-control-prev-icon {
+        height: 20px;
+        width: 20px;
+        background-size: 100%, 100%;
+        background-image: url("hoopr/leftArrow.png");
+    }
+    .overlay p {
+        font-size: 17px;
+    }
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+    .overlay-content {
+        position: relative;
+        top: 19%;
+        width: 100%;
+        text-align: center;
+        margin-top: 30px;
+    }
+}
+</style>
+<body>
+    <!-- Navigation bar -->
+    <div class="w3-top">
+        <div class="topnav">
+            <a href="https://huntercasillas.com/hoopr.html" style="color:white"> HOME </a>
+            <a href="https://huntercasillas.com/find.html" style="color:white"> FIND </a>
+            <a class="active" href="https://huntercasillas.com/live.html" style="color:white"> LIVE </a>
+        </div>
+    </div>
+    <div id = "container">
+        <!--Main content -->
+        <center> <div id = "content" style="margin-top:70px;">
+            <p id = "gymTitle">VASA Fitness Orem</p>
+            <p style="font-size: 18px; color:#272833; margin-bottom: 20px;">Live Video</p>
+        </div>
+        <div id="videoCarousel" class="carousel slide" data-touch="false" data-interval="false" data-ride="carousel">
+            <ol id = "carouselSelection" class="carousel-indicators">
+                <li style="cursor: pointer;" data-target="#videoCarousel" data-slide-to="0" onclick="setTitle(0);"></li>
+                <li style="cursor: pointer;" data-target="#videoCarousel" data-slide-to="1" onclick="setTitle(1);"></li>
+                <li style="cursor: pointer;" data-target="#videoCarousel" data-slide-to="2" onclick="setTitle(2);"></li>
+                <li style="cursor: pointer;" data-target="#videoCarousel" data-slide-to="3" class="active" onclick="setTitle(3);"></li>
+                <li style="cursor: pointer;" data-target="#videoCarousel" data-slide-to="4" onclick="setTitle(4);"></li>
+                <li style="cursor: pointer;" data-target="#videoCarousel" data-slide-to="5" onclick="setTitle(5);"></li>
+                <li style="cursor: pointer;" data-target="#videoCarousel" data-slide-to="6" onclick="setTitle(6);"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div id = "0" class="carousel-item">
+                    <video id= "livevideo0" autoplay mute loop poster="hoopr/videoPoster.png">
+                        <source src="hoopr/BYU.mp4" type="video/mp4">
+                    </video>
                 </div>
-
-                <a style="text-decoration:none; line-height: 110%; cursor: pointer;">
-                    <div id = "chat">
-                        <img id = "chaticon" src="chat.png" height="40px" width="40px" style="margin-top: 5px; margin-left: 10px; float:left;"></img>
-                        <p2 style="float:right; margin-right:18px; margin-top:15px;"> Need help? </p2>
-                    </div>
-                </a>
-                <a style="text-decoration:none" href="http://huntercasillas.com/hoopr.html"
-                    <div id = "hoopr">
-                    <img id = "logo" src="logo-transparent.png" height="50px" width="auto" style="margin-bottom:5px;"></img>
-                    <p1 style="margin-top:5px;"> HOOPR &nbsp</p>
-                        </div>
-                </a>
-
-                <!-- The Modal -->
-                <div id="myModal" class="modal">
-
-                <!-- Modal content -->
-                <div class="modal-content">
-                <div class="modal-header">
-                <span class="close">&times;</span>
-                <center><h2> &nbsp&nbsp&nbsp Help</h2></center>
-                    </div>
-                        <div class="modal-body">
-                            <center><p>This page displays a live stream of the gym selected on the find page. If you did not select a gym, the one nearest to your location will be displayed. You can browse other local gyms by using the right and left arrows or return to the nearest gym by clicking the corresponding button.</p></center>
-                        </div>
-                    </div>
+                <div id = "1" class="carousel-item">
+                    <video id= "livevideo1" autoplay mute loop poster="hoopr/videoPoster.png">
+                        <source src="hoopr/Anytime.mp4" type="video/mp4">
+                    </video>
                 </div>
-                <!-- Scripting -->
-                <script>
-                var hooprLogo = document.getElementById('hoopr');
+                <div id = "2" class="carousel-item">
+                    <video id= "livevideo2" autoplay mute loop poster="hoopr/videoPoster.png">
+                        <source src="hoopr/Recreation.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div id = "3" class="carousel-item active">
+                    <video id= "livevideo3" autoplay mute loop poster="hoopr/videoPoster.png">
+                        <source src="hoopr/Orem.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div id = "4" class="carousel-item">
+                    <video id= "livevideo4" autoplay mute loop poster="hoopr/videoPoster.png">
+                        <source src="hoopr/UVU.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div id = "5" class="carousel-item">
+                    <video id= "livevideo5" autoplay mute loop poster="hoopr/videoPoster.png">
+                        <source src="hoopr/Planet.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div id = "6" class="carousel-item">
+                    <video id= "livevideo6" autoplay mute loop poster="hoopr/videoPoster.png">
+                        <source src="hoopr/Provo.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#videoCarousel" onclick="setGymLeft();" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#videoCarousel" onclick="setGymRight();" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <button id = "viewButton" onclick = "getLocation();" style = "margin-top: 20px">Nearest Gym</button>
+    </div></center>
+</div>
+<div id = "chat" style="padding-right: 14px; padding-bottom: 14px;">
+    <img id = "chaticon" src="hoopr/chat.png" height="80px" width="auto"></img>
+</div>
+<a style="text-decoration:none" href="https://huntercasillas.com/hoopr.html">
+    <div id = "hoopr" style="margin-bottom: 25px">
+        <img id = "logo" src="hoopr/logo-transparent.png" height="50px" width="auto" style="margin-bottom: 8px;"></img>
+        <p1 style="margin-top:5px;"> HOOPR &nbsp</p>
+        </div>
+    </a>
+    <div id="myNav" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div id = "overlayContent" class="overlay-content">
+            <p>Looks like you haven't selected a gym yet.<br>Can we use your location?</p>
+            <button id = "navDecline" onclick = "closeNav();">No</button>
+            <button id = "navConfirm" onclick = "getLocationNav();">Yes</button>
+        </div>
+    </div>
+    <!-- Scripting -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+    var closestGym = 0;
+    var gymTitle = document.getElementById("gymTitle");
+    var hooprLogo = document.getElementById("hoopr");
+    var carouselSelection = document.getElementById("carouselSelection");
+    var gyms = [
+        {
+            "title": "Brigham Young University",
+            "lat": 40.248944,
+            "lng": -111.653493,
+            "description": "Richards Building"
+        },
+        {
+            "title": "Anytime Fitness",
+            "lat": 40.298179,
+            "lng": -111.735054,
+            "description": "Anytime Fitness"
+        },
+        {
+            "title": "Provo Recreation Center",
+            "lat": 40.241744,
+            "lng": -111.664284,
+            "description": "Provo Recreation"
+        },
+        {
+            "title": "VASA Fitness Orem",
+            "lat": 40.274529,
+            "lng": -111.673437,
+            "description": "VASA Orem"
+        },
+        {
+            "title": "Utah Valley University",
+            "lat": 40.279345,
+            "lng": -111.714910,
+            "description": "Wellness Center"
+        },
+        {
+            "title": "Planet Fitness",
+            "lat": 40.300054,
+            "lng": -111.697644,
+            "description": "Planet Fitness"
+        },
+        {
+            "title": "VASA Fitness Provo",
+            "lat": 40.240349,
+            "lng": -111.642137,
+            "description": "VASA Provo"
+        }
+    ];
 
-                // Fix background image jump on mobile
-                if ((/Android|iPhone|iPad|iPod|BlackBerry/i).test(navigator.userAgent || navigator.vendor || window.opera)) {
-                    hooprLogo.style.display = "none";
-                }
-                // Get the modal
-                var modal = document.getElementById('myModal');
+    if (typeof(Storage) !== "undefined") {
+        if (sessionStorage.gymID) {
+            gymTitle.innerHTML = gyms[sessionStorage.gymID].title;
+            var index = Number(sessionStorage.gymID);
+            $('#videoCarousel').carousel(index);
+        } else {
+            carouselSelection.style.pointerEvents = "none";
+            openNav();
+        }
+    } else {
+        carouselSelection.style.pointerEvents = "none";
+        openNav();
+    }
 
-                // Get the button that opens the modal
-                var btn = document.getElementById("chat");
+    // Fix controls on mobile
+    if (/Android|webOS|iPhone|iPod|pocket|psp|kindle|avantgo|blazer|midori|Tablet|Palm|maemo|plucker|phone|BlackBerry|symbian|IEMobile|mobile|ZuneWP7|Windows Phone|Opera Mini/i.test(navigator.userAgent || navigator.vendor || window.opera)) {
 
-                // Get the <span> element that closes the modal
-                var span = document.getElementsByClassName("close")[0];
+        var vid0 = document.getElementById("livevideo0");
+        var vid1 = document.getElementById("livevideo1");
+        var vid2 = document.getElementById("livevideo2");
+        var vid3 = document.getElementById("livevideo3");
+        var vid4 = document.getElementById("livevideo4");
+        var vid5 = document.getElementById("livevideo5");
+        var vid6 = document.getElementById("livevideo6");
+        var viewButton = document.getElementById("viewButton");
 
-                // When the user clicks the button, open the modal
-                btn.onclick = function() {
-                    modal.style.display = "block";
-                }
+        viewButton.style.marginBottom = "100px";
 
-                // When the user clicks on <span> (x), close the modal
-                span.onclick = function() {
-                    modal.style.display = "none";
-                }
-                // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function(event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                }
-                </script>
-            </body>
+        vid0.removeAttribute('autoplay');
+        vid0.setAttribute("controls","controls");
+
+        vid1.removeAttribute('autoplay');
+        vid1.setAttribute("controls","controls");
+
+        vid2.removeAttribute('autoplay');
+        vid2.setAttribute("controls","controls");
+
+        vid3.removeAttribute('autoplay');
+        vid3.setAttribute("controls","controls");
+
+        vid4.removeAttribute('autoplay');
+        vid4.setAttribute("controls","controls");
+
+        vid5.removeAttribute('autoplay');
+        vid5.setAttribute("controls","controls");
+
+        vid6.removeAttribute('autoplay');
+        vid6.setAttribute("controls","controls");
+    }
+
+    function getLocationNav() {
+        getLocation();
+        closeNav();
+    }
+
+    function openNav() {
+        document.getElementById("myNav").style.height = "100%";
+    }
+
+    function closeNav() {
+        document.getElementById("myNav").style.height = "0%";
+        carouselSelection.style.pointerEvents = "auto";
+    }
+
+    function setGymRight() {
+        var currentLive = document.getElementsByClassName("carousel-item active")[0].id;
+        var index = Number(currentLive);
+        if (index === 6) {
+            index = -1;
+        }
+        index = index + 1;
+        gymTitle.innerHTML = gyms[index].title;
+        sessionStorage.gymID = index;
+    }
+
+    function setGymLeft() {
+        var currentLive = document.getElementsByClassName("carousel-item active")[0].id;
+        var index = Number(currentLive);
+        if (index === 0) {
+            index = 7;
+        }
+        index = index - 1;
+        gymTitle.innerHTML = gyms[index].title;
+        sessionStorage.gymID = index;
+    }
+
+    function setTitle(index) {
+        gymTitle.innerHTML = gyms[index].title;
+        sessionStorage.gymID = index;
+    }
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            window.alert("Geolocation is not supported by this browser.");
+        }
+    }
+
+    function showPosition(position) {
+        findClosestGym(position.coords.latitude, position.coords.longitude);
+    }
+
+    function rad(x) {
+        return x*Math.PI/180;
+    }
+
+    function findClosestGym(lat, lng) {
+        var R = 6371; // radius of earth in km
+        var distances = [];
+        var closest = -1;
+        for (i=0; i < gyms.length; i++ ) {
+            var mlat = gyms[i].lat;
+            var mlng = gyms[i].lng;
+            var dLat  = rad(mlat - lat);
+            var dLong = rad(mlng - lng);
+            var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(rad(lat)) * Math.cos(rad(lat)) * Math.sin(dLong/2) * Math.sin(dLong/2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            var d = R * c;
+            distances[i] = d;
+            if ( closest == -1 || d < distances[closest] ) {
+                closest = i;
+            }
+        }
+        gymTitle.innerHTML = gyms[closest].title;
+        $("#videoCarousel").carousel(closest);
+        sessionStorage.gymID = closest;
+    }
+    </script>
+</body>
 </html>
